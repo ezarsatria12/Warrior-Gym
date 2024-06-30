@@ -5,15 +5,6 @@ import { Avatar, Button, Card } from "react-native-elements";
 import CustomSnackbar from "./component/Snackbar";
 
 const HomeScreen = () => {
-  /*const [snackbarVisible, setSnackbarVisible] = useState(false);
-
-  const onToggleSnackbar = () => {
-    setSnackbarVisible(!snackbarVisible);
-  };
-
-  const onDismissSnackbar = () => {
-    setSnackbarVisible(false);
-  };*/
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -95,7 +86,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 50,
+    backgroundColor: "#fff",
   },
   header: {
     flexDirection: "row",
@@ -106,15 +98,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   greetingText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
   userName: {
-    fontSize: 14,
+    fontSize: 16,
     color: "gray",
   },
   card: {
     borderRadius: 10,
+    backgroundColor: "#f9f9f9",
   },
   button: {
     backgroundColor: "#000",

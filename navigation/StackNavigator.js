@@ -5,11 +5,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from "../page/Home"; // Pindahkan HomeScreen ke folder screens
-import Workouts from "../page/Workouts";
+import WorkoutsScreen from "../page/Workouts";
 import Navbar from "../page/component/Navbar";
+import Addworkout from "../page/Addworkout";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 
 const StackNavigator = () => {
   return (
@@ -24,7 +26,8 @@ const StackNavigator = () => {
           tabBar={(props) => <Navbar {...props} />}
         >
           <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Workouts" component={Workouts} />
+          <Tab.Screen name="Workouts" component={WorkoutsScreen} />
+          <Stack.Screen name="AddWorkout" component={Addworkout} />
           {/* Tambahkan screen lainnya di sini */}
         </Tab.Navigator>
       </NavigationContainer>

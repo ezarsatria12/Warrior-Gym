@@ -1,97 +1,110 @@
 import React, { useState } from "react";
 
-import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Avatar, Button, Card } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import CustomSnackbar from "./component/Snackbar";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native"; 
 
-const HomeScreen = () => {
-  /*const [snackbarVisible, setSnackbarVisible] = useState(false);
+import Workoutcard from "./component/Workoutcard";
 
-  const onToggleSnackbar = () => {
-    setSnackbarVisible(!snackbarVisible);
-  };
+const Workoutsscreen = () => {
+    const [search, setSearch] = useState("");
+    const insets = useSafeAreaInsets();
+    const navigation = useNavigation(); 
+    
+  const workouts = [
+    {
+      title: "Chest Workout",
+      date: "2024-06-30",
+      time: "10:00 AM",
+      note: "Focus on upper chest",
+      progress: 90,
+    },
+    {
+      title: "Leg Day",
+      date: "2024-07-01",
+      time: "8:00 AM",
+      note: "Squats and lunges",
+      progress: 75,
+    },
+    {
+      title: "Back Workout",
+      date: "2024-07-02",
+      time: "6:00 PM",
+      note: "Deadlifts and rows",
+      progress: 60,
+    },
+    // Tambahkan data latihan lainnya di sini
+  ];
 
-  const onDismissSnackbar = () => {
-    setSnackbarVisible(false);
-  };*/
+  const filteredWorkouts = workouts.filter((workout) =>
+    workout.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <ScrollView style={styles.container}>
-      <Card containerStyle={styles.card}>
-        <View style={styles.todayPlan}>
-          <Image
-            style={styles.planImage}
-            source={require("../image/local/user.jpg")}
+    <View style={[styles.container, { paddingTop: insets.top + 20 }]}>
+      <View style={styles.head}>
+        <Text style={styles.header}>Workout</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("AddWorkout")}>
+          <Icon name="add" size={30} color="#000" />
+        </TouchableOpacity>
+      </View>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search"
+        value={search}
+        onChangeText={(text) => setSearch(text)}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {filteredWorkouts.map((workout, index) => (
+          <Workoutcard
+            key={index}
+            title={workout.title}
+            date={workout.date}
+            time={workout.time}
+            note={workout.note}
+            progress={workout.progress}
           />
-          <View>
-            <Text style={styles.planTitle}>Running</Text>
-            <Text style={styles.planDetail}>Burn belly fat by running</Text>
-            <Text style={styles.planProgress}>45%</Text>
-          </View>
-        </View>
-      </Card>
-    </ScrollView>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingTop: 60,
+    paddingHorizontal: 20,
+    backgroundColor: "#fff",
+  },
+  head: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
+    fontSize: 24,
+    fontWeight: "bold",
     marginBottom: 20,
   },
-  greeting: {
-    marginLeft: 10,
-  },
-  greetingText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  userName: {
-    fontSize: 14,
-    color: "gray",
-  },
-  card: {
+  searchInput: {
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
     borderRadius: 10,
-  },
-  button: {
-    backgroundColor: "#000",
-    marginTop: 10,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  todayPlan: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  planImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
-  },
-  planTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-  planDetail: {
-    fontSize: 14,
-    color: "gray",
-    marginLeft: 10,
-  },
-  planProgress: {
-    fontSize: 14,
-    color: "#000",
-    marginLeft: 10,
+    paddingHorizontal: 10,
+    marginBottom: 20,
   },
 });
 
-export default HomeScreen;
+export default Workoutsscreen;
