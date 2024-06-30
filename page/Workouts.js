@@ -27,8 +27,12 @@ const Workoutsscreen = () => {
       title: "Chest Workout",
       date: "2024-06-30",
       time: "10:00 AM",
-      note: "Focus on upper chest",
+      note: "Focus on upper chest", 
       progress: 90,
+      exercises: [
+        { name: "Push Ups", reps: "10", sets: "3" },
+        { name: "Bench Press", reps: "8", sets: "4" },
+      ],
     },
     {
       title: "Leg Day",
@@ -36,6 +40,10 @@ const Workoutsscreen = () => {
       time: "8:00 AM",
       note: "Squats and lunges",
       progress: 75,
+      exercises: [
+        { name: "Squats", reps: "15", sets: "3" },
+        { name: "Lunges", reps: "12", sets: "3" },
+      ],
     },
     {
       title: "Back Workout",
@@ -43,8 +51,11 @@ const Workoutsscreen = () => {
       time: "6:00 PM",
       note: "Deadlifts and rows",
       progress: 60,
+      exercises: [
+        { name: "Deadlifts", reps: "10", sets: "4" },
+        { name: "Rows", reps: "12", sets: "3" },
+      ],
     },
-    // Tambahkan data latihan lainnya di sini
   ];
 
   const filteredWorkouts = workouts.filter((workout) =>
@@ -74,6 +85,7 @@ const Workoutsscreen = () => {
             time={workout.time}
             note={workout.note}
             progress={workout.progress}
+            onPress={() => navigation.navigate("Detailworkout", { workout })}
           />
         ))}
       </ScrollView>

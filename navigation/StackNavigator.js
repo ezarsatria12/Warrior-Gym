@@ -8,6 +8,8 @@ import HomeScreen from "../page/Home"; // Pindahkan HomeScreen ke folder screens
 import WorkoutsScreen from "../page/Workouts";
 import Navbar from "../page/component/Navbar";
 import Addworkout from "../page/Addworkout";
+import Detailworkout from "../page/Detailworkout";
+import Editworkout from "../page/Editworkout";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +30,8 @@ const StackNavigator = () => {
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Workouts" component={WorkoutsScreen} />
           <Stack.Screen name="AddWorkout" component={Addworkout} />
+          <Stack.Screen name="Detailworkout" component={Detailworkout} />
+          <Stack.Screen name="Editworkout" component={Editworkout} />
           {/* Tambahkan screen lainnya di sini */}
         </Tab.Navigator>
       </NavigationContainer>

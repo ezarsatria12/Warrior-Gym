@@ -1,21 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Workoutcard = ({ title, date, time, note, progress }) => {
+const Workoutcard = ({ title, date, time, note, progress, onPress }) => {
   return (
-    <View style={styles.card}>
-      <View style={styles.cardContent}>
-        <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.date}>{date}</Text>
-          <Text style={styles.time}>{time}</Text>
-          <Text style={styles.note}>{note}</Text>
-        </View>
-        <View style={styles.progressContainer}>
-          <Text style={styles.progress}>{progress}%</Text>
+    <TouchableOpacity  onPress={onPress}>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <View>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.date}>{date}</Text>
+            <Text style={styles.time}>{time}</Text>
+            <Text style={styles.note}>{note}</Text>
+          </View>
+          <View style={styles.progressContainer}>
+            <Text style={styles.progress}>{progress}%</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

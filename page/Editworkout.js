@@ -10,29 +10,29 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
+import { exerciseOptions } from "../data/exercises"; // Import JSON data
+import { useNavigation } from "@react-navigation/native";
 
-import Modal from 'react-native-modal';
+// Tambahkan state untuk modal animasi
+import Modal from "react-native-modal";
 
-const Addworkout = ({ navigation }) => {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState(new Date());
+const Editworkout = ({ route }) => {
+  const { workout } = route.params;
+  const [title, setTitle] = useState(workout.title);
+  const [date, setDate] = useState(new Date(workout.date));
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState(new Date(workout.time));
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [note, setNote] = useState("");
-  const [exercises, setExercises] = useState([]);
+  const [note, setNote] = useState(workout.note);
+  const [exercises, setExercises] = useState(workout.exercises);
   const [showModal, setShowModal] = useState(false);
   const [newExercise, setNewExercise] = useState({
     name: "",
     reps: "",
     sets: "",
   });
-  const exerciseOptions = [
-    { label: "Push Ups", value: "Push Ups" },
-    { label: "Squats", value: "Squats" },
-    { label: "Lunges", value: "Lunges" },
-    // Tambahkan latihan lainnya di sini
-  ];
+
+  const navigation = useNavigation();
 
   const handleAddExercise = () => {
     setExercises([...exercises, newExercise]);
@@ -51,7 +51,7 @@ const Addworkout = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-back" size={30} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.header}>Add Workout</Text>
+        <Text style={styles.header}>Edit Workout</Text>
         <TouchableOpacity onPress={handleSaveWorkout}>
           <Icon name="checkmark" size={30} color="#000" />
         </TouchableOpacity>
@@ -202,7 +202,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 50,
     backgroundColor: "#fff",
   },
   headerContainer: {
@@ -287,4 +286,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Addworkout;
+export default Editworkout;
