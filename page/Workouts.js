@@ -21,21 +21,12 @@ const Workoutsscreen = () => {
     const [workoutToDelete, setWorkoutToDelete] = useState(null);
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-
-
-
-
   useEffect(() => {
     fetch("http://192.168.18.25:3000/workouts")
       .then((response) => response.json())
       .then((data) => setWorkouts(data))
       .catch((error) => console.error("Failed to fetch workouts:", error));
   }, []);
-      useFocusEffect(
-    useCallback(() => {
-      fetchWorkouts();
-    }, [])
-  );
     const handleLongPress = (workout) => {
       setWorkoutToDelete(workout);
       setModalVisible(true);
