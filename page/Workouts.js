@@ -1,62 +1,29 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
   TextInput,
   Text,
   TouchableOpacity,
-  Image,
   ScrollView,
 } from "react-native";
-import { Avatar, Button, Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import CustomSnackbar from "./component/Snackbar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native"; 
-
+import { useNavigation } from "@react-navigation/native";
 import Workoutcard from "./component/Workoutcard";
 
 const Workoutsscreen = () => {
-    const [search, setSearch] = useState("");
-    const insets = useSafeAreaInsets();
-    const navigation = useNavigation(); 
-    
-  const workouts = [
-    {
-      title: "Chest Workout",
-      date: "2024-06-30",
-      time: "10:00 AM",
-      note: "Focus on upper chest", 
-      progress: 90,
-      exercises: [
-        { name: "Push Ups", reps: "10", sets: "3" },
-        { name: "Bench Press", reps: "8", sets: "4" },
-      ],
-    },
-    {
-      title: "Leg Day",
-      date: "2024-07-01",
-      time: "8:00 AM",
-      note: "Squats and lunges",
-      progress: 75,
-      exercises: [
-        { name: "Squats", reps: "15", sets: "3" },
-        { name: "Lunges", reps: "12", sets: "3" },
-      ],
-    },
-    {
-      title: "Back Workout",
-      date: "2024-07-02",
-      time: "6:00 PM",
-      note: "Deadlifts and rows",
-      progress: 60,
-      exercises: [
-        { name: "Deadlifts", reps: "10", sets: "4" },
-        { name: "Rows", reps: "12", sets: "3" },
-      ],
-    },
-  ];
+  const [search, setSearch] = useState("");
+  const [workouts, setWorkouts] = useState([]);
+  const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    fetch("http://192.168.18.7:3000/workouts")
+      .then((response) => response.json())
+      .then((data) => setWorkouts(data))
+      .catch((error) => console.error("Failed to fetch workouts:", error));
+  }, []);
 
   const filteredWorkouts = workouts.filter((workout) =>
     workout.title.toLowerCase().includes(search.toLowerCase())
@@ -102,7 +69,6 @@ const styles = StyleSheet.create({
   head: {
     flexDirection: "row",
     justifyContent: "space-between",
-    
   },
   header: {
     fontSize: 24,

@@ -10,7 +10,6 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
-import { exerciseOptions } from "../data/exercises"; // Import JSON data
 import { useNavigation } from "@react-navigation/native";
 
 // Tambahkan state untuk modal animasi
