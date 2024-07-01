@@ -58,7 +58,7 @@ const Detailworkout = ({ route, navigation }) => {
           <Icon name="arrow-back" size={30} color="#000" />
         </TouchableOpacity>
         <Text style={styles.header}>{workout.title}</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("EditWorkout", {workout})}>
           <Icon name="pencil" size={30} color="#000" />
         </TouchableOpacity>
       </View>
