@@ -94,7 +94,6 @@ const Addworkout = ({ navigation }) => {
       return;
     }
     const newWorkout = {
-      id,
       title,
       date: date.toDateString(),
       time: time.toLocaleTimeString([], {

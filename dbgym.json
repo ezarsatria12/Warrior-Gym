@@ -15,7 +15,9 @@
       "date": "2024-06-30",
       "time": "10:00 AM",
       "note": "Focus on upper chest",
-      "progress": 90,
+
+      "progress": 100,
+
       "exercises": [
         {
           "name": "Push Ups",
@@ -28,14 +30,16 @@
           "sets": "4"
         }
       ],
-      "id": "523e"
+
+      "id": "62cd"
+
     },
     {
       "title": "Leg Day",
       "date": "2024-07-01",
       "time": "8:00 AM",
       "note": "Squats and lunges",
-      "progress": 75,
+      "progress": 100,
       "exercises": [
         {
           "name": "Squats",
@@ -48,14 +52,15 @@
           "sets": "3"
         }
       ],
-      "id": "0999"
+      "id": "933f"
+
     },
     {
       "title": "Back Workout",
       "date": "2024-07-02",
       "time": "6:00 PM",
       "note": "Deadlifts and rows",
-      "progress": 60,
+      "progress": 50,
       "exercises": [
         {
           "name": "Deadlifts",
@@ -68,7 +73,7 @@
           "sets": "3"
         }
       ],
-      "id": "f968"
+      "id": "3115"
     },
     {
       "id": "1719809984777",
@@ -76,7 +81,7 @@
       "date": "Tue Jul 02 2024",
       "time": "11.59",
       "note": "Ffghb",
-      "progress": 2,
+      "progress": 50,
       "exercises": [
         {
           "name": "Push Ups",
@@ -91,7 +96,7 @@
       "date": "Mon Jul 01 2024",
       "time": "12.02",
       "note": "Vsydu",
-      "progress": 2,
+      "progress": 100,
       "exercises": [
         {
           "name": "Squats",
@@ -101,22 +106,21 @@
       ]
     },
     {
-      "id": "1719815551529",
-      "title": "",
+
+      "id": "c221",
+      "title": "Cghy",
       "date": "Mon Jul 01 2024",
-      "time": "13.30",
-      "note": "",
-      "progress": 0,
-      "exercises": []
-    },
-    {
-      "id": "1719815560077",
-      "title": "",
-      "date": "Mon Jul 01 2024",
-      "time": "13.30",
-      "note": "",
-      "progress": 0,
-      "exercises": []
+      "time": "5:52 PM",
+      "note": "Cgg",
+      "progress": 8,
+      "exercises": [
+        {
+          "name": "Lunges",
+          "reps": "8",
+          "sets": "5"
+        }
+      ]
+
     }
   ]
 }

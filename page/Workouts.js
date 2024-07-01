@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   View,
@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Workoutcard from "./component/Workoutcard";
 
 const Workoutsscreen = () => {
@@ -22,13 +22,20 @@ const Workoutsscreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
+
+
+
   useEffect(() => {
     fetch("http://192.168.18.25:3000/workouts")
       .then((response) => response.json())
       .then((data) => setWorkouts(data))
       .catch((error) => console.error("Failed to fetch workouts:", error));
   }, []);
-    
+      useFocusEffect(
+    useCallback(() => {
+      fetchWorkouts();
+    }, [])
+  );
     const handleLongPress = (workout) => {
       setWorkoutToDelete(workout);
       setModalVisible(true);
