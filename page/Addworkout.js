@@ -13,6 +13,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Modal from "react-native-modal";
+import { Snackbar } from "react-native-paper";
 
 const Addworkout = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -30,11 +31,51 @@ const Addworkout = ({ navigation }) => {
     sets: "",
   });
 
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
   const exerciseOptions = [
-    { label: "Push Ups", value: "Push Ups" },
-    { label: "Squats", value: "Squats" },
+    { label: "Battle Ropes", value: "Battle Ropes" },
+    { label: "Bench Press", value: "Bench Press" },
+    { label: "Bicep Curls", value: "Bicep Curls" },
+    { label: "Box Jumps", value: "Box Jumps" },
+    { label: "Burpees", value: "Burpees" },
+    { label: "Calf Raises", value: "Calf Raises" },
+    { label: "Cable Crossovers", value: "Cable Crossovers" },
+    { label: "Cable Rows", value: "Cable Rows" },
+    { label: "Chest Press", value: "Chest Press" },
+    { label: "Deadlift", value: "Deadlift" },
+    { label: "Decline Bench Press", value: "Decline Bench Press" },
+    { label: "Dumbbell Flyes", value: "Dumbbell Flyes" },
+    { label: "Face Pulls", value: "Face Pulls" },
+    { label: "Farmer's Walk", value: "Farmer's Walk" },
+    { label: "Hammer Curls", value: "Hammer Curls" },
+    { label: "High Knees", value: "High Knees" },
+    { label: "Hip Thrusts", value: "Hip Thrusts" },
+    { label: "Incline Bench Press", value: "Incline Bench Press" },
+    { label: "Jumping Jacks", value: "Jumping Jacks" },
+    { label: "Kettlebell Swings", value: "Kettlebell Swings" },
+    { label: "Lat Pulldowns", value: "Lat Pulldowns" },
+    { label: "Leg Curls", value: "Leg Curls" },
+    { label: "Leg Extensions", value: "Leg Extensions" },
+    { label: "Leg Press", value: "Leg Press" },
+    { label: "Leg Raises", value: "Leg Raises" },
     { label: "Lunges", value: "Lunges" },
+    { label: "Mountain Climbers", value: "Mountain Climbers" },
+    { label: "Overhead Tricep Extension", value: "Overhead Tricep Extension" },
+    { label: "Plank", value: "Plank" },
+    { label: "Pull Ups", value: "Pull Ups" },
+    { label: "Push Ups", value: "Push Ups" },
+    { label: "Russian Twists", value: "Russian Twists" },
+    { label: "Seated Rows", value: "Seated Rows" },
+    { label: "Shoulder Press", value: "Shoulder Press" },
+    { label: "Sit Ups", value: "Sit Ups" },
+    { label: "Skull Crushers", value: "Skull Crushers" },
+    { label: "Squats", value: "Squats" },
+    { label: "T-Bar Rows", value: "T-Bar Rows" },
+    { label: "Tricep Dips", value: "Tricep Dips" },
   ];
+
 
   const handleAddExercise = () => {
     if (newExercise.name && newExercise.reps && newExercise.sets) {
@@ -47,8 +88,13 @@ const Addworkout = ({ navigation }) => {
   };
 
   const handleSaveWorkout = async () => {
+    if (!title || !date || !time || !note) {
+      setSnackbarMessage("Please fill in all fields.");
+      setSnackbarVisible(true);
+      return;
+    }
     const newWorkout = {
-      id: Date.now().toString(),
+      id,
       title,
       date: date.toDateString(),
       time: time.toLocaleTimeString([], {
@@ -70,7 +116,7 @@ const Addworkout = ({ navigation }) => {
       console.error("Failed to save workout locally", error);
     }
 
-    fetch("http://192.168.18.7:3000/workouts", {
+    fetch("http://192.168.18.25:3000/workouts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -155,13 +201,6 @@ const Addworkout = ({ navigation }) => {
         value={note}
         onChangeText={setNote}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Progress"
-        value={String(progress)}
-        onChangeText={(text) => setProgress(Number(text))}
-        keyboardType="numeric"
-      />
       <View style={styles.addExerciseHeader}>
         <Text style={styles.subHeader}>Exercises</Text>
         <TouchableOpacity onPress={() => setShowModal(true)}>
@@ -224,6 +263,18 @@ const Addworkout = ({ navigation }) => {
           </View>
         </View>
       </Modal>
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() => setSnackbarVisible(false)}
+        action={{
+          label: "OK",
+          onPress: () => {
+            setSnackbarVisible(false);
+          },
+        }}
+      >
+        {snackbarMessage}
+      </Snackbar>
     </ScrollView>
   );
 };
@@ -268,7 +319,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "#ccc",
+    borderColor: "#000",
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,

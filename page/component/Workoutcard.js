@@ -1,9 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Workoutcard = ({ title, date, time, note, progress, onPress }) => {
+const Workoutcard = ({
+  title,
+  date,
+  time,
+  note,
+  progress,
+  onPress,
+  onLongPress,
+}) => {
   return (
-    <TouchableOpacity  onPress={onPress}>
+    <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
       <View style={styles.card}>
         <View style={styles.cardContent}>
           <View>
@@ -23,7 +31,7 @@ const Workoutcard = ({ title, date, time, note, progress, onPress }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#fafafa",
     padding: 20,
     marginVertical: 10,
     borderRadius: 10,

@@ -10,7 +10,7 @@ const HomeScreen = () => {
       <View style={styles.header}>
         <Avatar
           rounded
-          source={require("../image/local/user.jpg")} // Perbarui jalur gambar
+          source={require("../image/local/profile.jpg")} // Perbarui jalur gambar
           size="medium"
         />
         <View style={styles.greeting}>

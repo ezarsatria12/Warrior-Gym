@@ -1,7 +1,6 @@
-// components/Navbar.js
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Navbar = ({ navigation }) => {
   return (
@@ -12,7 +11,7 @@ const Navbar = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Workouts")}>
         <Icon name="list" size={30} color="#FFF" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Userprofile")}>
         <Icon name="person" size={30} color="#FFF" />
       </TouchableOpacity>
     </View>
