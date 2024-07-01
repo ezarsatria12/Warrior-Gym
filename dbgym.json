@@ -1,0 +1,81 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "a title",
+      "email": 100,
+      "profile": ""
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200,
+      "profile": ""
+    }
+  ],
+  "workouts": [
+    {
+      "title": "Chest Workout",
+      "date": "2024-06-30",
+      "time": "10:00 AM",
+      "note": "Focus on upper chest", 
+      "progress": 90,
+      "exercises": [
+        { "name": "Push Ups", "reps": "10", "sets": "3" },
+        { "name": "Bench Press", "reps": "8", "sets": "4" }
+      ]
+    },
+    {
+      "title": "Leg Day",
+      "date": "2024-07-01",
+      "time": "8:00 AM",
+      "note": "Squats and lunges",
+      "progress": 75,
+      "exercises": [
+        { "name": "Squats", "reps": "15", "sets": "3" },
+        { "name": "Lunges", "reps": "12", "sets": "3" }
+      ]
+    },
+    {
+      "title": "Back Workout",
+      "date": "2024-07-02",
+      "time": "6:00 PM",
+      "note": "Deadlifts and rows",
+      "progress": 60,
+      "exercises": [
+        { "name": "Deadlifts", "reps": "10", "sets": "4" },
+        { "name": "Rows", "reps": "12", "sets": "3" }
+      ]
+    },
+    {
+      "id": "1719809984777",
+      "title": "Ftyh",
+      "date": "Tue Jul 02 2024",
+      "time": "11.59",
+      "note": "Ffghb",
+      "progress": 2,
+      "exercises": [
+        {
+          "name": "Push Ups",
+          "reps": "5",
+          "sets": "8"
+        }
+      ]
+    },
+    {
+      "id": "1719810151596",
+      "title": "Ydudjdo",
+      "date": "Mon Jul 01 2024",
+      "time": "12.02",
+      "note": "Vsydu",
+      "progress": 2,
+      "exercises": [
+        {
+          "name": "Squats",
+          "reps": "2",
+          "sets": "2"
+        }
+      ]
+    }
+  ]
+}
