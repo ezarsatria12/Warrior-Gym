@@ -17,10 +17,10 @@ const Userprofile = () => {
         // Set default data if no data is found in AsyncStorage
         const defaultProfile = {
           photoUrl: require("../image/local/profile.jpg"),
-          name: "John Doe",
-          email: "johndoe@example.com",
+          name: "Dani Prass",
+          email: "daniepras@gmail.com",
           joinedDate: "2023-01-15",
-          subscriptionEndDate: "2024-01-15",
+          subscriptionEndDate: "2025-01-15",
         };
         setProfile(defaultProfile);
         await AsyncStorage.setItem("profile", JSON.stringify(defaultProfile));

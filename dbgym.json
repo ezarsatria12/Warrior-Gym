@@ -3,8 +3,8 @@
     {
       "id": "1",
       "photoUrl": "https://example.com/photo.jpg",
-      "name": "John Doe",
-      "email": "johndoe@example.com",
+      "name": "Dani Prass",
+      "email": "daniepras@gmail.com",
       "joinedDate": "2023-01-15",
       "subscriptionEndDate": "2024-01-15"
     }
@@ -28,7 +28,9 @@
           "sets": "4"
         }
       ],
+
       "id": "62cd"
+
     },
     {
       "title": "Leg Day",
@@ -76,7 +78,9 @@
       "date": "Tue Jul 02 2024",
       "time": "11.59",
       "note": "Ffghb",
+
       "progress": 0,
+
       "exercises": [
         {
           "name": "Push Ups",
@@ -86,6 +90,7 @@
       ]
     },
     {
+
       "id": "d077",
       "title": "Gtty",
       "date": "2024-07-11T17:00:00.000Z",
@@ -101,6 +106,23 @@
         {
           "name": "Push Up",
           "reps": "5",
+          "sets": "5"
+        }
+      ]
+
+    },
+    {
+
+      "id": "c221",
+      "title": "Cghy",
+      "date": "Mon Jul 01 2024",
+      "time": "5:52 PM",
+      "note": "Cgg",
+      "progress": 8,
+      "exercises": [
+        {
+          "name": "Lunges",
+          "reps": "8",
           "sets": "5"
         }
       ]

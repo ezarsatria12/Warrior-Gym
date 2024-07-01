@@ -22,6 +22,7 @@ const Workoutsscreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
+
   const fetchWorkouts = async () => {
     try {
       const response = await fetch("http://192.168.18.7:3000/workouts");
@@ -31,12 +32,11 @@ const Workoutsscreen = () => {
       console.error("Failed to fetch workouts:", error);
     }
   };
-
   useEffect(() => {
     fetchWorkouts();
   }, []);
+      useFocusEffect(
 
-  useFocusEffect(
     useCallback(() => {
       fetchWorkouts();
     }, [])
@@ -60,6 +60,7 @@ const Workoutsscreen = () => {
           setWorkoutToDelete(null);
           Alert.alert("Success", "Workout deleted successfully");
           fetchWorkouts(); // Fetch data again after deletion
+
         })
         .catch((error) => {
           console.error("Failed to delete workout:", error);
