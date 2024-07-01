@@ -6,12 +6,13 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
-
-import Modal from 'react-native-modal';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Modal from "react-native-modal";
 
 const Addworkout = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -20,6 +21,7 @@ const Addworkout = ({ navigation }) => {
   const [time, setTime] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [note, setNote] = useState("");
+  const [progress, setProgress] = useState(0);
   const [exercises, setExercises] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newExercise, setNewExercise] = useState({
@@ -27,21 +29,63 @@ const Addworkout = ({ navigation }) => {
     reps: "",
     sets: "",
   });
+
   const exerciseOptions = [
     { label: "Push Ups", value: "Push Ups" },
     { label: "Squats", value: "Squats" },
     { label: "Lunges", value: "Lunges" },
-    // Tambahkan latihan lainnya di sini
   ];
 
   const handleAddExercise = () => {
-    setExercises([...exercises, newExercise]);
-    setNewExercise({ name: "", reps: "", sets: "" });
-    setShowModal(false);
+    if (newExercise.name && newExercise.reps && newExercise.sets) {
+      setExercises([...exercises, newExercise]);
+      setNewExercise({ name: "", reps: "", sets: "" });
+      setShowModal(false);
+    } else {
+      Alert.alert("Error", "Please fill all exercise details.");
+    }
   };
 
-  const handleSaveWorkout = () => {
-    console.log("Workout saved:", { title, date, time, note, exercises });
+  const handleSaveWorkout = async () => {
+    const newWorkout = {
+      id: Date.now().toString(),
+      title,
+      date: date.toDateString(),
+      time: time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      note,
+      progress,
+      exercises: [...exercises],
+    };
+
+    try {
+      const existingWorkouts = await AsyncStorage.getItem("workouts");
+      const workouts = existingWorkouts ? JSON.parse(existingWorkouts) : [];
+      workouts.push(newWorkout);
+      await AsyncStorage.setItem("workouts", JSON.stringify(workouts));
+      console.log("Workout saved locally:", newWorkout);
+    } catch (error) {
+      console.error("Failed to save workout locally", error);
+    }
+
+    fetch("http://192.168.18.7:3000/workouts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newWorkout),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Workout saved to backend:", data);
+      })
+      .catch((error) => {
+        console.error("Failed to save workout to backend", error);
+        Alert.alert("Error", "Failed to save workout to backend");
+      });
+
     navigation.goBack();
   };
 
@@ -110,6 +154,13 @@ const Addworkout = ({ navigation }) => {
         placeholder="Note"
         value={note}
         onChangeText={setNote}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Progress"
+        value={String(progress)}
+        onChangeText={(text) => setProgress(Number(text))}
+        keyboardType="numeric"
       />
       <View style={styles.addExerciseHeader}>
         <Text style={styles.subHeader}>Exercises</Text>
