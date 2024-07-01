@@ -2,15 +2,11 @@
   "user": [
     {
       "id": "1",
-      "name": "a title",
-      "email": 100,
-      "profile": ""
-    },
-    {
-      "id": "2",
-      "title": "another title",
-      "views": 200,
-      "profile": ""
+      "photoUrl": "https://example.com/photo.jpg",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "joinedDate": "2023-01-15",
+      "subscriptionEndDate": "2024-01-15"
     }
   ],
   "workouts": [
@@ -19,7 +15,7 @@
       "date": "2024-06-30",
       "time": "10:00 AM",
       "note": "Focus on upper chest",
-      "progress": 100,
+      "progress": 0,
       "exercises": [
         {
           "name": "Push Ups",
@@ -80,7 +76,7 @@
       "date": "Tue Jul 02 2024",
       "time": "11.59",
       "note": "Ffghb",
-      "progress": 50,
+      "progress": 0,
       "exercises": [
         {
           "name": "Push Ups",
@@ -90,31 +86,21 @@
       ]
     },
     {
-      "id": "1719810151596",
-      "title": "Ydudjdo",
-      "date": "Mon Jul 01 2024",
-      "time": "12.02",
-      "note": "Vsydu",
-      "progress": 100,
+      "id": "d077",
+      "title": "Gtty",
+      "date": "2024-07-11T17:00:00.000Z",
+      "time": null,
+      "note": "Nhh",
+      "progress": 0,
       "exercises": [
         {
-          "name": "Squats",
-          "reps": "2",
-          "sets": "2"
-        }
-      ]
-    },
-    {
-      "id": "c221",
-      "title": "Cghy",
-      "date": "Mon Jul 01 2024",
-      "time": "5:52 PM",
-      "note": "Cgg",
-      "progress": 8,
-      "exercises": [
+          "name": "Box Jumps",
+          "reps": "5",
+          "sets": "8"
+        },
         {
-          "name": "Lunges",
-          "reps": "8",
+          "name": "Push Up",
+          "reps": "5",
           "sets": "5"
         }
       ]
