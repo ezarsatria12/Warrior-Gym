@@ -15,13 +15,13 @@ const HomeScreen = () => {
         />
         <View style={styles.greeting}>
           <Text style={styles.greetingText}>Good Morning 🔥</Text>
-          <Text style={styles.userName}>David Lee</Text>
+          <Text style={styles.userName}>Dani Prass</Text>
         </View>
       </View>
 
       <Card containerStyle={styles.card}>
         <Card.Title>CrossFit</Card.Title>
-        <Card.Image source={require("../image/local/user.jpg")} />
+        <Card.Image source={require("../image/local/crossfit.jpeg")} />
         <Button
           title="See more"
           buttonStyle={styles.button}
@@ -34,7 +34,7 @@ const HomeScreen = () => {
         <View style={styles.workoutCard}>
           <Image
             style={styles.workoutImage}
-            source={require("../image/local/user.jpg")}
+            source={require("../image/local/abs.jpg")}
           />
           <Text style={styles.workoutTitle}>Abs Beginner</Text>
           <Text style={styles.workoutDetail}>20 Min</Text>
@@ -43,9 +43,18 @@ const HomeScreen = () => {
         <View style={styles.workoutCard}>
           <Image
             style={styles.workoutImage}
-            source={require("../image/local/user.jpg")}
+            source={require("../image/local/handstand.jpg")}
           />
           <Text style={styles.workoutTitle}>Handstand Training</Text>
+          <Text style={styles.workoutDetail}>15 Min</Text>
+          <Text style={styles.workoutDetail}>70 Kcal</Text>
+        </View>
+        <View style={styles.workoutCard}>
+          <Image
+            style={styles.workoutImage}
+            source={require("../image/local/bicep.jpeg")}
+          />
+          <Text style={styles.workoutTitle}>Dumbbell curl</Text>
           <Text style={styles.workoutDetail}>15 Min</Text>
           <Text style={styles.workoutDetail}>70 Kcal</Text>
         </View>
@@ -56,10 +65,10 @@ const HomeScreen = () => {
         <View style={styles.todayPlan}>
           <Image
             style={styles.planImage}
-            source={require("../image/local/user.jpg")}
+            source={require("../image/local/barbelcurl.jpg")}
           />
           <View>
-            <Text style={styles.planTitle}>Running</Text>
+            <Text style={styles.planTitle}>Barbell curl</Text>
             <Text style={styles.planDetail}>Burn belly fat by running</Text>
             <Text style={styles.planProgress}>45%</Text>
           </View>
@@ -69,7 +78,7 @@ const HomeScreen = () => {
         <View style={styles.todayPlan}>
           <Image
             style={styles.planImage}
-            source={require("../image/local/user.jpg")}
+            source={require("../image/local/runing.jpeg")}
           />
           <View>
             <Text style={styles.planTitle}>Running</Text>
