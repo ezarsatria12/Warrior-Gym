@@ -48,7 +48,6 @@ const Addworkout = ({ navigation }) => {
 
   const handleSaveWorkout = async () => {
     const newWorkout = {
-      id: Date.now().toString(),
       title,
       date: date.toDateString(),
       time: time.toLocaleTimeString([], {

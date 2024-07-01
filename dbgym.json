@@ -18,34 +18,61 @@
       "title": "Chest Workout",
       "date": "2024-06-30",
       "time": "10:00 AM",
-      "note": "Focus on upper chest", 
-      "progress": 90,
+      "note": "Focus on upper chest",
+      "progress": 100,
       "exercises": [
-        { "name": "Push Ups", "reps": "10", "sets": "3" },
-        { "name": "Bench Press", "reps": "8", "sets": "4" }
-      ]
+        {
+          "name": "Push Ups",
+          "reps": "10",
+          "sets": "3"
+        },
+        {
+          "name": "Bench Press",
+          "reps": "8",
+          "sets": "4"
+        }
+      ],
+      "id": "62cd"
     },
     {
       "title": "Leg Day",
       "date": "2024-07-01",
       "time": "8:00 AM",
       "note": "Squats and lunges",
-      "progress": 75,
+      "progress": 100,
       "exercises": [
-        { "name": "Squats", "reps": "15", "sets": "3" },
-        { "name": "Lunges", "reps": "12", "sets": "3" }
-      ]
+        {
+          "name": "Squats",
+          "reps": "15",
+          "sets": "3"
+        },
+        {
+          "name": "Lunges",
+          "reps": "12",
+          "sets": "3"
+        }
+      ],
+      "id": "933f"
     },
     {
       "title": "Back Workout",
       "date": "2024-07-02",
       "time": "6:00 PM",
       "note": "Deadlifts and rows",
-      "progress": 60,
+      "progress": 50,
       "exercises": [
-        { "name": "Deadlifts", "reps": "10", "sets": "4" },
-        { "name": "Rows", "reps": "12", "sets": "3" }
-      ]
+        {
+          "name": "Deadlifts",
+          "reps": "10",
+          "sets": "4"
+        },
+        {
+          "name": "Rows",
+          "reps": "12",
+          "sets": "3"
+        }
+      ],
+      "id": "3115"
     },
     {
       "id": "1719809984777",
@@ -53,7 +80,7 @@
       "date": "Tue Jul 02 2024",
       "time": "11.59",
       "note": "Ffghb",
-      "progress": 2,
+      "progress": 50,
       "exercises": [
         {
           "name": "Push Ups",
@@ -68,12 +95,27 @@
       "date": "Mon Jul 01 2024",
       "time": "12.02",
       "note": "Vsydu",
-      "progress": 2,
+      "progress": 100,
       "exercises": [
         {
           "name": "Squats",
           "reps": "2",
           "sets": "2"
+        }
+      ]
+    },
+    {
+      "id": "c221",
+      "title": "Cghy",
+      "date": "Mon Jul 01 2024",
+      "time": "5:52 PM",
+      "note": "Cgg",
+      "progress": 8,
+      "exercises": [
+        {
+          "name": "Lunges",
+          "reps": "8",
+          "sets": "5"
         }
       ]
     }
