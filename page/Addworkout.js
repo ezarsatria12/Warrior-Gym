@@ -115,7 +115,7 @@ const Addworkout = ({ navigation }) => {
       console.error("Failed to save workout locally", error);
     }
 
-    fetch("http://192.168.18.25:3000/workouts", {
+    fetch("http://192.168.18.7:3000/workouts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

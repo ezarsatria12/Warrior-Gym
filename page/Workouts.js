@@ -16,49 +16,58 @@ import Workoutcard from "./component/Workoutcard";
 
 const Workoutsscreen = () => {
   const [search, setSearch] = useState("");
-    const [workouts, setWorkouts] = useState([]);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [workoutToDelete, setWorkoutToDelete] = useState(null);
+  const [workouts, setWorkouts] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [workoutToDelete, setWorkoutToDelete] = useState(null);
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
 
-
-
+  const fetchWorkouts = async () => {
+    try {
+      const response = await fetch("http://192.168.18.7:3000/workouts");
+      const data = await response.json();
+      setWorkouts(data);
+    } catch (error) {
+      console.error("Failed to fetch workouts:", error);
+    }
+  };
   useEffect(() => {
-    fetch("http://192.168.18.25:3000/workouts")
-      .then((response) => response.json())
-      .then((data) => setWorkouts(data))
-      .catch((error) => console.error("Failed to fetch workouts:", error));
+    fetchWorkouts();
   }, []);
       useFocusEffect(
+
     useCallback(() => {
       fetchWorkouts();
     }, [])
   );
-    const handleLongPress = (workout) => {
-      setWorkoutToDelete(workout);
-      setModalVisible(true);
-    };
-    const handleDeleteWorkout = () => {
-      if (workoutToDelete) {
-        fetch(`http://192.168.18.25:3000/workouts/${workoutToDelete.id}`, {
-          method: "DELETE",
+
+  const handleLongPress = (workout) => {
+    setWorkoutToDelete(workout);
+    setModalVisible(true);
+  };
+
+  const handleDeleteWorkout = () => {
+    if (workoutToDelete) {
+      fetch(`http://192.168.18.7:3000/workouts/${workoutToDelete.id}`, {
+        method: "DELETE",
+      })
+        .then(() => {
+          setWorkouts(
+            workouts.filter((workout) => workout.id !== workoutToDelete.id)
+          );
+          setModalVisible(false);
+          setWorkoutToDelete(null);
+          Alert.alert("Success", "Workout deleted successfully");
+          fetchWorkouts(); // Fetch data again after deletion
+
         })
-          .then(() => {
-            setWorkouts(
-              workouts.filter((workout) => workout.id !== workoutToDelete.id)
-            );
-            setModalVisible(false);
-            setWorkoutToDelete(null);
-            Alert.alert("Success", "Workout deleted successfully");
-          })
-          .catch((error) => {
-            console.error("Failed to delete workout:", error);
-            Alert.alert("Error", "Failed to delete workout");
-          });
-      }
-    };
+        .catch((error) => {
+          console.error("Failed to delete workout:", error);
+          Alert.alert("Error", "Failed to delete workout");
+        });
+    }
+  };
 
   const filteredWorkouts = workouts.filter((workout) =>
     workout.title.toLowerCase().includes(search.toLowerCase())

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -11,19 +11,18 @@ import Icon from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
-
-// Tambahkan state untuk modal animasi
 import Modal from "react-native-modal";
 
-const Editworkout = ({ route }) => {
-  const { workout } = route.params;
-  const [title, setTitle] = useState(workout.title);
-  const [date, setDate] = useState(new Date(workout.date));
+const Editworkout = ({ route}) => {
+  const navigation = useNavigation();
+  const [workout, setWorkout] = useState(route.params?.workout || {});
+  const [title, setTitle] = useState(workout.title || "");
+  const [date, setDate] = useState(workout.date ? new Date(workout.date) : new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [time, setTime] = useState(new Date(workout.time));
+  const [time, setTime] = useState(workout.time ? new Date(workout.time) : new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [note, setNote] = useState(workout.note);
-  const [exercises, setExercises] = useState(workout.exercises);
+  const [note, setNote] = useState(workout.note || "");
+  const [exercises, setExercises] = useState(workout.exercises || []);
   const [showModal, setShowModal] = useState(false);
   const [newExercise, setNewExercise] = useState({
     name: "",
@@ -31,7 +30,17 @@ const Editworkout = ({ route }) => {
     sets: "",
   });
 
-  const navigation = useNavigation();
+  useEffect(() => {
+    if (route.params?.workout) {
+      const { workout } = route.params;
+      setWorkout(workout);
+      setTitle(workout.title);
+      setDate(new Date(workout.date));
+      setTime(new Date(workout.time));
+      setNote(workout.note);
+      setExercises(workout.exercises);
+    }
+  }, [route.params?.workout]);
 
   const handleAddExercise = () => {
     setExercises([...exercises, newExercise]);
@@ -40,9 +49,44 @@ const Editworkout = ({ route }) => {
   };
 
   const handleSaveWorkout = () => {
-    console.log("Workout saved:", { title, date, time, note, exercises });
-    navigation.goBack();
+    const updatedWorkout = { ...workout, title, date, time, note, exercises };
+    console.log("Workout updated:", updatedWorkout);
+  
+    // Kirim permintaan HTTP untuk memperbarui data di server
+    fetch(`http://192.168.18.7:3000/workouts/${workout.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedWorkout),
+    })
+      .then(response => {
+        console.log("Response status:", response.status);
+        console.log("Response headers:", response.headers);
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+  
+        return response.text().then(text => {
+          try {
+            return JSON.parse(text);
+          } catch (error) {
+            console.error("JSON parse error:", error);
+            console.error("Response text:", text);
+            throw new Error('Failed to parse JSON response');
+          }
+        });
+      })
+      .then(data => {
+        console.log('Success:', data);
+        navigation.goBack();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+  
 
   return (
     <ScrollView style={styles.container}>
@@ -141,7 +185,11 @@ const Editworkout = ({ route }) => {
               onValueChange={(value) =>
                 setNewExercise({ ...newExercise, name: value })
               }
-              items={exerciseOptions}
+              items={[
+                { label: "Push Up", value: "Push Up" },
+                { label: "Squat", value: "Squat" },
+                // Add more exercise options here
+              ]}
               style={pickerSelectStyles}
               placeholder={{ label: "Select Exercise", value: null }}
             />
@@ -201,6 +249,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 50,
     backgroundColor: "#fff",
   },
   headerContainer: {
